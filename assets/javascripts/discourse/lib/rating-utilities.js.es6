@@ -25,12 +25,14 @@ let removeRating = function(postId) {
   });
 };
 
-let editRating = function(postId, rating) {
+let editRating = function(postId, rating, rating1, rating2) {
   return ajax("/rating/rate", {
     type: 'POST',
     data: {
       post_id: postId,
-      rating: rating
+      rating: rating,
+      rating1: rating1,
+      rating2: rating2
     }
   }).then(function (result, error) {
     if (error) {
@@ -56,6 +58,7 @@ let starRatingRaw = function(rating, opts = {}) {
     star += '<i></i>';
     content = content.concat(star);
   }
+
 
   return '<span class="star-rating">' + content + '</span>';
 };

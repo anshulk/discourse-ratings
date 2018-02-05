@@ -10,6 +10,9 @@ en:
       hidden_ratings: "Topic has hidden ratings"
       no_ratings: "No ratings yet"
       rating_count: "Ratings"
+      rating_name: "Punctuality"
+      rating1_name: "Cleanliness"
+      rating2_name: "Comfort"
       tip:
         ratings:
           title: "Rating Topic"

@@ -1,5 +1,5 @@
 {{#if model.showRating}}
-  {{select-rating rating=model.rating includeRating=model.includeRating}}
+  {{select-rating rating=model.rating rating1=model.rating1 rating2=model.rating2 includeRating=model.includeRating}}
 {{/if}}
 {{#if model.showRatingTargetId}}
   {{input class='rating-target-id' value=model.rating_target_id placeholder=(i18n 'composer.rating_target_id')}}

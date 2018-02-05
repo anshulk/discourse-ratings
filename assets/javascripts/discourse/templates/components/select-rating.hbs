@@ -1,5 +1,10 @@
 {{input type="checkbox" checked=includeRating}}
 <span>{{i18n 'composer.your_rating'}}</span>
 {{#if includeRating}}
-  {{star-rating enabled=includeRating rating=rating}}
+  <br>
+  {{i18n 'topic.rating_name'}}{{star-rating enabled=includeRating rating=rating}}
+  <br>
+  {{i18n 'topic.rating1_name'}}{{star-rating enabled=includeRating rating=rating1}}
+  <br>
+  {{i18n 'topic.rating2_name'}}{{star-rating enabled=includeRating rating=rating2}}
 {{/if}}

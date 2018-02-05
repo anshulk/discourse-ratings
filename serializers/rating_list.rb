@@ -1,8 +1,8 @@
 class DiscourseRatings::RatingListSerializer < ::ApplicationSerializer
-  attributes :id, :title, :url, :average_rating, :category_id, :featured_link
+  attributes :id, :title, :url, :averages, :category_id, :featured_link
 
-  def average_rating
-    object.custom_fields["average_rating"]
+  def averages
+    object.custom_fields["averages"]
   end
 
   def url

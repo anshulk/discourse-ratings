@@ -1,10 +1,24 @@
 <div class="average-rating">
   {{#if model.rating_enabled}}
     {{#if model.has_ratings}}
-      {{star-rating-raw model.average_rating}}
+      {{i18n 'topic.rating_name'}}{{star-rating-raw model.average_rating}}
       {{#if this.siteSettings.rating_show_exact_average}}
         <span class="exact-rating">
           {{average-rating model}}
+        </span>
+      {{/if}}
+
+      {{i18n 'topic.rating1_name'}}{{star-rating-raw model.average_rating1}}
+      {{#if this.siteSettings.rating_show_exact_average}}
+        <span class="exact-rating">
+          {{average-rating1 model}}
+        </span>
+      {{/if}}
+
+      {{i18n 'topic.rating2_name'}}{{star-rating-raw model.average_rating2}}
+      {{#if this.siteSettings.rating_show_exact_average}}
+        <span class="exact-rating">
+          {{average-rating2 model}}
         </span>
       {{/if}}
     {{else}}

@@ -8,18 +8,27 @@ export default {
   initialize(){
 
     Composer.serializeOnCreate('rating');
+    Composer.serializeOnCreate('rating1');
+    Composer.serializeOnCreate('rating2');
     Composer.serializeOnCreate('rating_target_id', 'rating_target_id');
     Composer.serializeToTopic('rating_target_id', 'topic.rating_target_id');
 
     withPluginApi('0.8.10', api => {
       api.includePostAttributes('rating');
+      api.includePostAttributes('rating1');
+      api.includePostAttributes('rating2');
 
       api.decorateWidget('poster-name:after', function(helper) {
         const rating = helper.attrs.rating;
+        const rating1 = helper.attrs.rating1;
+        const rating2 = helper.attrs.rating2;
         const model = helper.getModel();
-
+        console.log("rating : ", rating);
+        console.log("rating1 : ", rating1);
+        console.log("rating2 : ", rating2);
         if (model && model.topic && model.topic.rating_enabled && rating) {
-          let html = new Handlebars.SafeString(starRatingRaw(rating));
+          let html = new Handlebars.SafeString(starRatingRaw(rating)+starRatingRaw(rating1)+starRatingRaw(rating2));
+          console.log("html : ", html);
           return helper.rawHtml(`${html}`);
         }
       });
@@ -35,6 +44,8 @@ export default {
           const post = this.get('post');
           if (this.get('editingPost') && post && post.rating) {
             this.set('rating', post.rating);
+            this.set('rating1', post.rating1);
+            this.set('rating2', post.rating2);
           }
         },
 
@@ -81,6 +92,8 @@ export default {
             const showRating = this.get('model.showRating');
             const includeRating = this.get('model.includeRating');
             const rating = this.get('model.rating');
+            const rating1 = this.get('model.rating1');
+            const rating2 = this.get('model.rating2');
 
             if (showRating && includeRating && !rating) {
               return bootbox.alert(I18n.t("composer.select_rating"));
@@ -104,13 +117,15 @@ export default {
 
           const post = this.get('model.post');
           const rating = this.get('model.rating');
+          const rating1 = this.get('model.rating1');
+          const rating2 = this.get('model.rating2');
 
           if (rating && !this.get('model.includeRating')) {
            removeRating(post.id);
            const controller = this.get('topicController');
            controller.toggleCanRate();
           } else {
-           editRating(post.id, rating);
+           editRating(post.id, rating, rating1, rating2);
           }
         }
       });
@@ -167,8 +182,10 @@ export default {
 
             this.messageBus.subscribe("/topic/" + model.id, function(data) {
               if (data.type === 'revised') {
-                if (data.average !== undefined) {
-                  model.set('average_rating', data.average);
+                if (data.averages !== undefined) {
+                  model.set('average_rating', data.averages[0]);
+                  model.set('average_rating1', data.averages[1]);
+                  model.set('average_rating2', data.averages[2]);
                 }
                 if (data.post_id !== undefined) {
                   model.get('postStream').triggerChangedPost(data.post_id, data.updated_at).then(() =>

@@ -2,9 +2,21 @@
   <div class="topic-rating">
     {{#if context.topic.has_ratings}}
       <a href='{{context.topic.url}}'>
-        {{star-rating-raw context.topic.average_rating clickable='true'}}
+        {{i18n 'topic.rating_name'}}{{star-rating-raw context.topic.average_rating clickable='true'}}
         {{#if context.siteSettings.rating_show_exact_average}}
           <span class="exact-rating">{{average-rating context.topic}}</span>
+        {{/if}}
+      </a>
+      <a href='{{context.topic.url}}'>
+        {{i18n 'topic.rating1_name'}}{{star-rating-raw context.topic.average_rating1 clickable='true'}}
+        {{#if context.siteSettings.rating_show_exact_average}}
+          <span class="exact-rating">{{average-rating1 context.topic}}</span>
+        {{/if}}
+      </a>
+      <a href='{{context.topic.url}}'>
+        {{i18n 'topic.rating2_name'}}{{star-rating-raw context.topic.average_rating2 clickable='true'}}
+        {{#if context.siteSettings.rating_show_exact_average}}
+          <span class="exact-rating">{{average-rating2 context.topic}}</span>
         {{/if}}
       </a>
     {{else}}
