@@ -10,6 +10,8 @@ module RatingsHelper
       @ratings = []
       @rating1s = []
       @rating2s = []
+      @rating3s = []
+
       @averages = []
 
       @topic_posts.each do |tp|
@@ -18,9 +20,12 @@ module RatingsHelper
           rating = tp.custom_fields["rating"].to_i
           rating1 = tp.custom_fields["rating1"].to_i
           rating2 = tp.custom_fields["rating2"].to_i
+          rating3 = tp.custom_fields["rating3"].to_i
+
           @ratings.push(rating)
           @rating1s.push(rating1)
           @rating2s.push(rating2)
+          @rating3s.push(rating3)
         end
       end
 
@@ -33,13 +38,17 @@ module RatingsHelper
       average2 = @rating2s.empty? ? nil : @rating2s.inject(:+).to_f / @rating2s.length
       average2 = average2.round(1) if average2
 
+      average3 = @rating3s.empty? ? nil : @rating3s.inject(:+).to_f / @rating3s.length
+      average3 = average2.round(1) if average3
+
       topic.custom_fields["average_rating"] = average
       topic.custom_fields["average_rating1"] = average1
       topic.custom_fields["average_rating2"] = average2
+      topic.custom_fields["average_rating3"] = average3
 
       topic.save_custom_fields(true)
 
-      return [average, average1, average2]
+      return [average, average1, average2, average3]
     end
 
     def push_ratings_to_clients(topic, averages, updatedId = '')

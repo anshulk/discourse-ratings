@@ -10,6 +10,8 @@ export default {
     Composer.serializeOnCreate('rating');
     Composer.serializeOnCreate('rating1');
     Composer.serializeOnCreate('rating2');
+    Composer.serializeOnCreate('rating3');
+
     Composer.serializeOnCreate('rating_target_id', 'rating_target_id');
     Composer.serializeToTopic('rating_target_id', 'topic.rating_target_id');
 
@@ -17,18 +19,23 @@ export default {
       api.includePostAttributes('rating');
       api.includePostAttributes('rating1');
       api.includePostAttributes('rating2');
+      api.includePostAttributes('rating3');
 
       api.decorateWidget('poster-name:after', function(helper) {
         const rating = helper.attrs.rating;
         const rating1 = helper.attrs.rating1;
         const rating2 = helper.attrs.rating2;
+        const rating3 = helper.attrs.rating3;
+
         const model = helper.getModel();
-        console.log("rating : ", rating);
-        console.log("rating1 : ", rating1);
-        console.log("rating2 : ", rating2);
+
         if (model && model.topic && model.topic.rating_enabled && rating) {
-          let html = new Handlebars.SafeString(starRatingRaw(rating)+starRatingRaw(rating1)+starRatingRaw(rating2));
-          console.log("html : ", html);
+          let html = new Handlebars.SafeString(
+          '<div><b>Punctuality'+starRatingRaw(rating)
+          +'Cleanliness'+starRatingRaw(rating1)
+          +'Food'+starRatingRaw(rating2)
+          +'Uncrowded'+starRatingRaw(rating3)
+          +'</b></div>');
           return helper.rawHtml(`${html}`);
         }
       });
@@ -46,6 +53,7 @@ export default {
             this.set('rating', post.rating);
             this.set('rating1', post.rating1);
             this.set('rating2', post.rating2);
+            this.set('rating3', post.rating3);
           }
         },
 
@@ -94,6 +102,7 @@ export default {
             const rating = this.get('model.rating');
             const rating1 = this.get('model.rating1');
             const rating2 = this.get('model.rating2');
+            const rating3 = this.get('model.rating3');
 
             if (showRating && includeRating && !rating) {
               return bootbox.alert(I18n.t("composer.select_rating"));
@@ -119,13 +128,14 @@ export default {
           const rating = this.get('model.rating');
           const rating1 = this.get('model.rating1');
           const rating2 = this.get('model.rating2');
+          const rating3 = this.get('model.rating3');
 
           if (rating && !this.get('model.includeRating')) {
            removeRating(post.id);
            const controller = this.get('topicController');
            controller.toggleCanRate();
           } else {
-           editRating(post.id, rating, rating1, rating2);
+           editRating(post.id, rating, rating1, rating2, rating3);
           }
         }
       });
@@ -186,6 +196,7 @@ export default {
                   model.set('average_rating', data.averages[0]);
                   model.set('average_rating1', data.averages[1]);
                   model.set('average_rating2', data.averages[2]);
+                  model.set('average_rating3', data.averages[3]);
                 }
                 if (data.post_id !== undefined) {
                   model.get('postStream').triggerChangedPost(data.post_id, data.updated_at).then(() =>

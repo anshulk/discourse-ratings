@@ -1,10 +1,50 @@
-{{input type="checkbox" checked=includeRating}}
-<span>{{i18n 'composer.your_rating'}}</span>
+<!-- {{input type="checkbox" checked=includeRating}}
+<span>{{i18n 'composer.your_rating'}}</span> -->
 {{#if includeRating}}
-  <br>
-  {{i18n 'topic.rating_name'}}{{star-rating enabled=includeRating rating=rating}}
-  <br>
-  {{i18n 'topic.rating1_name'}}{{star-rating enabled=includeRating rating=rating1}}
-  <br>
-  {{i18n 'topic.rating2_name'}}{{star-rating enabled=includeRating rating=rating2}}
+<table>
+  <tr>
+    <td>
+      <b>{{i18n 'topic.rating_name'}}</b>
+    </td>
+    <td>
+    {{star-rating enabled=includeRating rating=rating}}
+    </td>
+    <td>
+    {{i18n 'topic.rating_name_desc'}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>{{i18n 'topic.rating1_name'}}</b>
+    </td>
+    <td>
+    {{star-rating enabled=includeRating rating=rating1}}
+    </td>
+    <td>
+    {{i18n 'topic.rating1_name_desc'}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>{{i18n 'topic.rating2_name'}}</b>
+    </td>
+    <td>
+    {{star-rating enabled=includeRating rating=rating2}}
+    </td>
+    <td>
+    {{i18n 'topic.rating2_name_desc'}}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <b>{{i18n 'topic.rating3_name'}}</b>
+    </td>
+    <td>
+    {{star-rating enabled=includeRating rating=rating3}}
+    </td>
+    <td>
+    {{i18n 'topic.rating3_name_desc'}}
+    </td>
+  </tr>
+</table>
 {{/if}}

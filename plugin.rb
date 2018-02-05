@@ -36,7 +36,7 @@ after_initialize do
   load File.expand_path('../lib/ratings_helper.rb', __FILE__)
 
   TopicView.add_post_custom_fields_whitelister do |user|
-    ["rating", "rating1", "rating2", "rating_weight"]
+    ["rating", "rating1", "rating2", "rating3", "rating_weight"]
   end
 
   TopicList.preloaded_custom_fields << "average_rating" if TopicList.respond_to? :preloaded_custom_fields
@@ -48,9 +48,13 @@ after_initialize do
   TopicList.preloaded_custom_fields << "average_rating2" if TopicList.respond_to? :preloaded_custom_fields
   TopicList.preloaded_custom_fields << "rating_count" if TopicList.respond_to? :preloaded_custom_fields
 
+  TopicList.preloaded_custom_fields << "average_rating3" if TopicList.respond_to? :preloaded_custom_fields
+  TopicList.preloaded_custom_fields << "rating_count" if TopicList.respond_to? :preloaded_custom_fields
+
   add_permitted_post_create_param('rating')
   add_permitted_post_create_param('rating1')
   add_permitted_post_create_param('rating2')
+  add_permitted_post_create_param('rating3')
   add_permitted_post_create_param('rating_target_id')
 
   DiscourseEvent.on(:post_created) do |post, opts, user|
@@ -58,6 +62,7 @@ after_initialize do
       post.custom_fields['rating'] = opts[:rating]
       post.custom_fields['rating1'] = opts[:rating1]
       post.custom_fields['rating2'] = opts[:rating2]
+      post.custom_fields['rating3'] = opts[:rating3]
       post.custom_fields["rating_weight"] = 1
       post.save_custom_fields(true)
       RatingsHelper.handle_rating_update(post)
@@ -109,6 +114,10 @@ after_initialize do
       self.custom_fields["average_rating2"].to_f
     end
 
+    def average_rating3
+      self.custom_fields["average_rating3"].to_f
+    end
+
     def rating_enabled?
       has_rating_tag = !(tags & SiteSetting.rating_tags.split('|')).empty?
       is_rating_category = self.category && self.category.custom_fields["rating_enabled"]
@@ -130,7 +139,7 @@ after_initialize do
 
   require 'topic_view_serializer'
   class ::TopicViewSerializer
-    attributes :average_rating, :average_rating1, :average_rating2, :rating_enabled, :rating_count, :can_rate, :rating_target_id, :has_ratings
+    attributes :average_rating, :average_rating1, :average_rating2, :average_rating3, :rating_enabled, :rating_count, :can_rate, :rating_target_id, :has_ratings
 
     def average_rating
       object.topic.average_rating
@@ -142,6 +151,10 @@ after_initialize do
 
     def average_rating2
       object.topic.average_rating2
+    end
+
+    def average_rating3
+      object.topic.average_rating3
     end
 
     def include_average_rating?
@@ -175,7 +188,7 @@ after_initialize do
 
   require 'topic_list_item_serializer'
   class ::TopicListItemSerializer
-    attributes :average_rating, :average_rating1, :average_rating2, :rating_count, :show_average, :has_ratings
+    attributes :average_rating, :average_rating1, :average_rating2, :average_rating3, :rating_count, :show_average, :has_ratings
 
     def average_rating
       object.average_rating
@@ -187,6 +200,10 @@ after_initialize do
 
     def average_rating2
       object.average_rating2
+    end
+
+    def average_rating3
+      object.average_rating3
     end
 
     def include_average_rating?
@@ -214,6 +231,7 @@ after_initialize do
   add_to_serializer(:post, :rating) { post_custom_fields["rating"] }
   add_to_serializer(:post, :rating1) { post_custom_fields["rating1"] }
   add_to_serializer(:post, :rating2) { post_custom_fields["rating2"] }
+  add_to_serializer(:post, :rating3) { post_custom_fields["rating3"] }
 
   require_dependency 'topic_query'
   class ::TopicQuery

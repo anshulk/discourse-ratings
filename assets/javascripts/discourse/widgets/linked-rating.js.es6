@@ -8,6 +8,7 @@ export default createWidget('linked-rating', {
     return this.attach('star-rating', {rating: attrs.rating, disabled: attrs.disabled});
     return this.attach('star-rating', {rating: attrs.rating1, disabled: attrs.disabled});
     return this.attach('star-rating', {rating: attrs.rating2, disabled: attrs.disabled});
+    return this.attach('star-rating', {rating: attrs.rating3, disabled: attrs.disabled});
   },
 
   click() {

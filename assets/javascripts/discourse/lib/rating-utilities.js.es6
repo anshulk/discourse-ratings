@@ -25,14 +25,15 @@ let removeRating = function(postId) {
   });
 };
 
-let editRating = function(postId, rating, rating1, rating2) {
+let editRating = function(postId, rating, rating1, rating2, rating3) {
   return ajax("/rating/rate", {
     type: 'POST',
     data: {
       post_id: postId,
       rating: rating,
       rating1: rating1,
-      rating2: rating2
+      rating2: rating2,
+      rating3: rating3
     }
   }).then(function (result, error) {
     if (error) {
@@ -59,8 +60,12 @@ let starRatingRaw = function(rating, opts = {}) {
     content = content.concat(star);
   }
 
-
   return '<span class="star-rating">' + content + '</span>';
 };
 
-export { ratingEnabled, removeRating, editRating, starRatingRaw };
+let starRatingRawMean = function(r,r1,r2,r3){
+  console.log("r,r1,r2,r3 : ", r,r1,r2,r3);
+  return starRatingRaw((r+r1+r2+r3)/4);
+};
+
+export { ratingEnabled, removeRating, editRating, starRatingRaw, starRatingRawMean };

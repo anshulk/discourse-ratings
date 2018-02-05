@@ -1,26 +1,72 @@
 <div class="average-rating">
   {{#if model.rating_enabled}}
     {{#if model.has_ratings}}
-      {{i18n 'topic.rating_name'}}{{star-rating-raw model.average_rating}}
-      {{#if this.siteSettings.rating_show_exact_average}}
-        <span class="exact-rating">
-          {{average-rating model}}
-        </span>
-      {{/if}}
+    <table>
+      <tr>
+        <td>
+          <b>{{i18n 'topic.rating_name'}}</b>
+        </td>
+        <td>
+        {{star-rating-raw model.average_rating}}
+        </td>
+        {{#if this.siteSettings.rating_show_exact_average}}
+        <td>
+          <span class="exact-rating">
+            {{average-rating model}}
+          </span>
+        </td>
+        {{/if}}
+      </tr>
 
-      {{i18n 'topic.rating1_name'}}{{star-rating-raw model.average_rating1}}
-      {{#if this.siteSettings.rating_show_exact_average}}
-        <span class="exact-rating">
-          {{average-rating1 model}}
-        </span>
-      {{/if}}
+      <tr>
+        <td>
+          <b>{{i18n 'topic.rating1_name'}}</b>
+        </td>
+        <td>
+        {{star-rating-raw model.average_rating1}}
+        </td>
+        {{#if this.siteSettings.rating_show_exact_average}}
+        <td>
+          <span class="exact-rating">
+            {{average-rating1 model}}
+          </span>
+        </td>
+        {{/if}}
+      </tr>
 
-      {{i18n 'topic.rating2_name'}}{{star-rating-raw model.average_rating2}}
-      {{#if this.siteSettings.rating_show_exact_average}}
-        <span class="exact-rating">
-          {{average-rating2 model}}
-        </span>
-      {{/if}}
+      <tr>
+        <td>
+          <b>{{i18n 'topic.rating2_name'}}</b>
+        </td>
+        <td>
+        {{star-rating-raw model.average_rating2}}
+        </td>
+        {{#if this.siteSettings.rating_show_exact_average}}
+        <td>
+          <span class="exact-rating">
+            {{average-rating2 model}}
+          </span>
+        </td>
+        {{/if}}
+      </tr>
+
+      <tr>
+        <td>
+          <b>{{i18n 'topic.rating3_name'}}</b>
+        </td>
+        <td>
+        {{star-rating-raw model.average_rating3}}
+        </td>
+        {{#if this.siteSettings.rating_show_exact_average}}
+        <td>
+          <span class="exact-rating">
+            {{average-rating3 model}}
+          </span>
+        </td>
+        {{/if}}
+      </tr>
+
+    </table>
     {{else}}
       {{i18n 'topic.no_ratings'}}
     {{/if}}
