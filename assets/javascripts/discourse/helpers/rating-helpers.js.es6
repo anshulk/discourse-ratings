@@ -26,8 +26,5 @@ registerUnbound('average-rating2', function(topic) {
 
 registerUnbound('average-rating3', function(topic) {
   let html = `${topic.average_rating3}`;
-  if (Discourse.SiteSettings.rating_show_count && topic.rating_count) {
-    html += `<br> ( ${topic.rating_count} ${I18n.t('topic.rating_count')} ) `;
-  }
   return new Handlebars.SafeString(html);
 });
