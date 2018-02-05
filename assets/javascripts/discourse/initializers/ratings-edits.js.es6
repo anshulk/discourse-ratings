@@ -31,10 +31,10 @@ export default {
 
         if (model && model.topic && model.topic.rating_enabled && rating) {
           let html = new Handlebars.SafeString(
-          '<div><b>Punctuality'+starRatingRaw(rating)
-          +'Cleanliness'+starRatingRaw(rating1)
-          +'Food'+starRatingRaw(rating2)
-          +'Uncrowded'+starRatingRaw(rating3)
+          '<div><br><b>Punctuality'+starRatingRaw(rating)
+          +'<br>Cleanliness'+starRatingRaw(rating1)
+          +'<br>Food'+starRatingRaw(rating2)
+          +'<br>Uncrowded'+starRatingRaw(rating3)
           +'</b></div>');
           return helper.rawHtml(`${html}`);
         }
