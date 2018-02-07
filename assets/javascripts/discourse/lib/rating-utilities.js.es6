@@ -63,4 +63,4 @@ let starRatingRaw = function(rating, opts = {}) {
   return '<span class="star-rating">' + content + '</span>';
 };
 
-export { ratingEnabled, removeRating, editRating, starRatingRaw, starRatingRawMean };
+export { ratingEnabled, removeRating, editRating, starRatingRaw };
