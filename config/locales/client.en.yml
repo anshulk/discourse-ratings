@@ -4,7 +4,7 @@ en:
       enable_rating: "Use topics in this category to rate things."
     composer:
       your_rating: "Add a rating"
-      select_rating: "Please select a rating, or uncheck 'Add a rating'."
+      select_rating: "Please select all ratings."
       rating_target_id: "Rating target id"
     topic:
       hidden_ratings: "Topic has hidden ratings"

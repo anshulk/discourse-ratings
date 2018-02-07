@@ -1,11 +1,10 @@
 class DiscourseRatings::RatingController < ::ApplicationController
   def rate
     params.require(:post_id)
-    params.require(:rating)
-    params.require(:rating1)
-    params.require(:rating2)
-    params.require(:rating3)
-
+    # params.require(:rating)
+    # params.require(:rating1)
+    # params.require(:rating2)
+    # params.require(:rating3)
 
     post = Post.find(params[:post_id].to_i)
     post.custom_fields["rating"] = params[:rating].to_i

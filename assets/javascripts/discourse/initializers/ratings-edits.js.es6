@@ -97,6 +97,7 @@ export default {
       api.modifyClass('controller:composer', {
         actions: {
           save() {
+            const firstPost = this.get('model.action') == 'createTopic' || this.get('model.post.post_number') == 1;
             const showRating = this.get('model.showRating');
             const includeRating = this.get('model.includeRating');
             const rating = this.get('model.rating');
@@ -104,7 +105,7 @@ export default {
             const rating2 = this.get('model.rating2');
             const rating3 = this.get('model.rating3');
 
-            if (showRating && includeRating && !rating) {
+            if (showRating && includeRating && !firstPost && ( !rating || !rating1 || !rating2 || !rating3) ) {
               return bootbox.alert(I18n.t("composer.select_rating"));
             }
 
