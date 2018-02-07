@@ -63,9 +63,4 @@ let starRatingRaw = function(rating, opts = {}) {
   return '<span class="star-rating">' + content + '</span>';
 };
 
-let starRatingRawMean = function(r,r1,r2,r3){
-  console.log("r,r1,r2,r3 : ", r,r1,r2,r3);
-  return starRatingRaw((r+r1+r2+r3)/4);
-};
-
 export { ratingEnabled, removeRating, editRating, starRatingRaw, starRatingRawMean };

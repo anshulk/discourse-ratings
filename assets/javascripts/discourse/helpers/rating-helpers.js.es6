@@ -1,5 +1,5 @@
 import { registerUnbound } from 'discourse-common/lib/helpers';
-import { starRatingRaw, starRatingRawMean} from '../lib/rating-utilities';
+import { starRatingRaw } from '../lib/rating-utilities';
 
 registerUnbound('star-rating-raw', function(rating, opts) {
   return new Handlebars.SafeString(starRatingRaw(rating, opts));

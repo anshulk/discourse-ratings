@@ -39,7 +39,7 @@ module RatingsHelper
       average2 = average2.round(1) if average2
 
       average3 = @rating3s.empty? ? nil : @rating3s.inject(:+).to_f / @rating3s.length
-      average3 = average2.round(1) if average3
+      average3 = average3.round(1) if average3
 
       topic.custom_fields["average_rating"] = average
       topic.custom_fields["average_rating1"] = average1
