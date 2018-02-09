@@ -1,7 +1,12 @@
 {{#if context.topic.show_average}}
   <div class="topic-rating">
     {{#if context.topic.has_ratings}}
-      {{star-rating-raw (mean-rating context.topic)}} - {{context.topic.rating_count}} ratings
+      {{star-rating-raw (mean-rating context.topic)}} {{context.topic.rating_count}}
+      {{#if context.topic.rating_count == 1}}
+        ratings
+      {{else}}
+        rating
+      {{/if}}
     {{else}}
       {{i18n 'topic.no_ratings'}}
     {{/if}}

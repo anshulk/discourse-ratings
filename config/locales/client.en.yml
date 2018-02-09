@@ -14,10 +14,10 @@ en:
       rating1_name: "Cleanliness"
       rating2_name: "Food"
       rating3_name: "Uncrowded"
-      rating_name_desc: " 5 stars -> Least delays"
-      rating1_name_desc: " 5 stars -> Clean and hygenic coaches"
-      rating2_name_desc: " 5 stars -> Healthy and Hygenic Food"
-      rating3_name_desc: " 5 stars -> Least crowd and rush"
+      rating_name_desc: " 5★ = Least delays"
+      rating1_name_desc: " 5★ = Clean and hygienic coaches"
+      rating2_name_desc: " 5★ = Good quality, hygienic Food"
+      rating3_name_desc: " 5★ = Least crowd and rush"
       tip:
         ratings:
           title: "Rating Topic"
