@@ -9,6 +9,11 @@ registerUnbound('mean-rating', function(topic) {
   return (topic.average_rating+topic.average_rating2+topic.average_rating1+topic.average_rating3)/4;
 });
 
+
+registerUnbound('isOne', function(val) {
+  return val == 1;
+});
+
 registerUnbound('average-rating', function(topic) {
   let html = `${topic.average_rating}`;
   return new Handlebars.SafeString(html);

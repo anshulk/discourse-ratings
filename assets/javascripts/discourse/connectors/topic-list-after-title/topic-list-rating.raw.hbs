@@ -2,10 +2,10 @@
   <div class="topic-rating">
     {{#if context.topic.has_ratings}}
       {{star-rating-raw (mean-rating context.topic)}} {{context.topic.rating_count}}
-      {{#if (eq context.topic.rating_count 1)}}
-        ratings
-      {{else}}
+      {{#if (isOne context.topic.rating_count)}}
         rating
+      {{else}}
+        ratings
       {{/if}}
     {{else}}
       {{i18n 'topic.no_ratings'}}
