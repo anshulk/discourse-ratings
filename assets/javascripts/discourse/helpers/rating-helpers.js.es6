@@ -10,8 +10,8 @@ registerUnbound('mean-rating', function(topic) {
 });
 
 
-registerUnbound('isOne', function(val) {
-  return val == 1;
+registerUnbound('ratings-string', function(val) {
+  return val == 1 ? 'rating' else 'ratings';
 });
 
 registerUnbound('average-rating', function(topic) {
