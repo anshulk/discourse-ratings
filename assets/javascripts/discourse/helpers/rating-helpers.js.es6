@@ -11,7 +11,7 @@ registerUnbound('mean-rating', function(topic) {
 
 
 registerUnbound('ratings-string', function(val) {
-  return val == 1 ? 'rating' else 'ratings';
+  return (val == 1) ? 'rating' : 'ratings';
 });
 
 registerUnbound('average-rating', function(topic) {
